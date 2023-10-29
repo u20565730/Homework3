@@ -74,13 +74,20 @@
                             @Html.DisplayFor(modelItem => item.type.name)
                         </td>
                         <td>
-                            @if ((Model.Borrow.Where(b => b.bookId == item.bookId).LastOrDefault()).broughtDate < DateTime.Now)
+                            @if (lastBorrow != null)
                             {
-                                <span class="text-success">Available</span>
+
+                                if ((Model.Borrow.Where(b => b.bookId == item.bookId).LastOrDefault()).broughtDate < DateTime.Now && lastBorrow != null)
+                                {
+                                    <span class="text-success">Available</span>
+                                }
+                                else
+                                {
+                                    <span class="text-danger">Out</span>
+                                }
                             }
                             else
-                            {
-                                <span class="text-danger">Out</span>
+                            { <span class="text-success">Available</span>
                             }
                         </td>
                     </tr>
@@ -89,7 +96,7 @@
             </table>
             Page @(Model.Book.PageCount < Model.Book.PageNumber ? 0 : Model.Book.PageNumber) of @Model.Book.PageCount
 
-            @Html.PagedListPager(Model.Book, page => Url.Action("CombinedIndex",
+            @Html.PagedListPager(Model.Book, page => Url.Action("Index",
                 new { page = page, page2 = 1, page3 = 1 }))
         </div>
         <div class="col-md-2">
@@ -157,7 +164,7 @@
             </table>
             Page @(Model.Student.PageCount < Model.Student.PageNumber ? 0 : Model.Student.PageNumber) of @Model.Student.PageCount
 
-            @Html.PagedListPager(Model.Student, page => Url.Action("CombinedIndex",
+            @Html.PagedListPager(Model.Student, page => Url.Action("Index",
                 new { page = 1, page2 = page, page3 = 1 }))
         </div>
     </div>

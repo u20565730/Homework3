@@ -64,7 +64,7 @@
             </table>
             Page @(Model.Author.PageCount < Model.Author.PageNumber ? 0 : Model.Author.PageNumber) of @Model.Author.PageCount
 
-            @Html.PagedListPager(Model.Author, page => Url.Action("CombinedIndex2",
+            @Html.PagedListPager(Model.Author, page => Url.Action("Maintain",
                 new { page = page, page2 = 1, page3 = 1 }))
         </div>
 
@@ -110,7 +110,7 @@
             </table>
             Page @(Model.Type.PageCount < Model.Type.PageNumber ? 0 : Model.Type.PageNumber) of @Model.Type.PageCount
 
-            @Html.PagedListPager(Model.Type, page => Url.Action("CombinedIndex2",
+            @Html.PagedListPager(Model.Type, page => Url.Action("Maintain",
                 new { page = 1, page2 = 1, page3 = page }))
         </div>
     </div>
@@ -173,7 +173,7 @@
             </table>
             Page @(Model.Borrow.PageCount < Model.Borrow.PageNumber ? 0 : Model.Borrow.PageNumber) of @Model.Borrow.PageCount
 
-            @Html.PagedListPager(Model.Borrow, page => Url.Action("CombinedIndex2",
+            @Html.PagedListPager(Model.Borrow, page => Url.Action("Maintain",
                 new { page = 1, page2 = page, page3 = 1 }))
         </div>
     </div>
